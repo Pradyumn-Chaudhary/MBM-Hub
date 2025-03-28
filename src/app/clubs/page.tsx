@@ -6,7 +6,7 @@ export default function ClubsPage() {
   const { clubs } = useData();
 
   return (
-    <div className="px-6 py-12 bg-gray-950 text-white">
+    <div className="px-6 py-12 bg-gray-950 text-white min-h-screen">
       <h1 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
         All Clubs
       </h1>
@@ -16,7 +16,7 @@ export default function ClubsPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {clubs.map((club) => (
-            <Link key={club.id} href={`/clubs/${club.id}`}>
+            <Link key={club.id} href={`/clubs/${club.name}`} target="_blank">
               <div className="bg-gray-800 p-6 rounded-lg shadow-md text-center cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-lg">
                 <img
                   src={club.image}

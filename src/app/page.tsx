@@ -23,7 +23,7 @@ export default function Home() {
           <h2 className="text-3xl font-semibold mb-4">Featured Clubs</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {clubs.slice(0, 3).map((club) => (
-              <Link key={club.id} href={`/clubs/${club.name}`}>
+              <Link key={club.id} href={`/clubs/${club.name}`} target="_blank">
                 <div className="bg-gray-800 p-6 rounded-lg shadow-md text-center cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-lg">
                   <img
                     src={club.image}

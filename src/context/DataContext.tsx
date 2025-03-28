@@ -12,7 +12,7 @@ const SHEET_ID = process.env.NEXT_PUBLIC_SHEET_ID;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const CLUBS_RANGE = "Clubs!A2:D";
 const EVENTS_RANGE = "Events!A2:F";
-const ANNOUNCEMENTS_RANGE = "Announcements!A2:D";
+const ANNOUNCEMENTS_RANGE = "Announcements!A2:E";
 
 interface Club {
   id: string;
