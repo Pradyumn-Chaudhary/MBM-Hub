@@ -1,59 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { v4 as uuidv4 } from 'uuid';
-
-const SHEET_ID = process.env.NEXT_PUBLIC_SHEET_ID;
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const CLUBS_RANGE = "Clubs!A2:D";
-const EVENTS_RANGE = "Events!A2:F";
-const ANNOUNCEMENTS_RANGE = "Announcements!A2:D";
-
-interface Club {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-}
-
-interface Event {
-  id: string;
-  name: string;
-  image: string;
-  date: string;
-  time: string;
-  venue: string;
-  link: string;
-}
-
-interface Announcement {
-  id: string;
-  title: string;
-  club: string;
-  date: string;
-  message: string;
-}
+import { useData } from "@/context/DataContext";
 
 export default function Home() {
-  const [clubs, setClubs] = useState<Club[]>([]);
-  const [events, setEvents] = useState<Event[]>([]);
-  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
-
-  useEffect(() => {
-    async function fetchData<T>(range: string, setData: (data: T[]) => void, mapper: (row: string[]) => T) {
-      const response = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`
-      );
-      const data = await response.json();
-      if (data.values) {
-        setData(data.values.map(mapper));
-      }
-    }
-
-    fetchData(CLUBS_RANGE, setClubs, ([id, name, description, image]) => ({ id, name, description, image }));
-    fetchData(EVENTS_RANGE, setEvents, ([name, image, date, time, venue,link]) => ({ id: uuidv4(), name, image, date, time, venue,link }));
-    fetchData(ANNOUNCEMENTS_RANGE, setAnnouncements, ([title,club, date, message]) => ({ id:  uuidv4(), title,club, date, message }));
-  }, []);
+  const { clubs, events, announcements } = useData();
 
   return (
     <div className="bg-gray-950 text-white min-h-screen">
@@ -110,7 +60,10 @@ export default function Home() {
           <div className="space-y-4">
             {announcements.reverse().slice(0, 3).map((announcement) => (
               <div key={announcement.id} className="bg-gray-800 p-4 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
-                <h3 className="text-lg font-bold">{announcement.title}</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-bold">{announcement.title}</h3>
+                  <h3 className="text-lg font-bold">{announcement.club}</h3>
+                </div>
                 <p className="text-gray-400">{announcement.date}</p>
                 <p className="mt-2">{announcement.message}</p>
               </div>
