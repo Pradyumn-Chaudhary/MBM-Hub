@@ -50,7 +50,9 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [clubs, setClubs] = useState<Club[]>([]);
+  const [unfilteredEvents, setUnfilteredEvents] = useState<Event[]>([]);
   const [events, setEvents] = useState<Event[]>([]);
+  const [unfilteredAnnouncements, setUnfilteredAnnouncements] = useState<Announcement[]>([]);
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
 
   useEffect(() => {
@@ -76,7 +78,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     }));
     fetchData(
       EVENTS_RANGE,
-      setEvents,
+      setUnfilteredEvents,
       ([name, image, date, time, venue, link]) => ({
         id: uuidv4(),
         name,
@@ -89,7 +91,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     );
     fetchData(
       ANNOUNCEMENTS_RANGE,
-      setAnnouncements,
+      setUnfilteredAnnouncements,
       ([title, club, date, message, link]) => ({
         id: uuidv4(),
         title,
@@ -101,6 +103,22 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     );
   }, []);
 
+   // **Filter unfilteredEvents only once after fetching is completed**
+  useEffect(() => {
+    if (unfilteredEvents.length > 0) {
+      const today = new Date().toISOString().split("T")[0];
+      setEvents(unfilteredEvents.filter((event) => event.date >= today)); // Remove past events
+    }
+  }, [unfilteredEvents]); // Runs only when `unfilteredEvents` is updated
+
+   // **Filter unfilteredAnnouncements only once after fetching is completed**
+  useEffect(() => {
+    if (unfilteredAnnouncements.length > 0) {
+      const today = new Date().toISOString().split("T")[0];
+      setAnnouncements(unfilteredAnnouncements.filter((announcement) => announcement.date >= today)); // Remove past Announcements
+    }
+  }, [unfilteredAnnouncements]); // Runs only when `unfilteredAnnouncements` is updated
+  
   return (
     <DataContext.Provider value={{ clubs, events, announcements }}>
       {children}
