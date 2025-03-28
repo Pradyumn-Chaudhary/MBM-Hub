@@ -7,6 +7,9 @@ export default function ClubsPage() {
 
   return (
     <div className="px-6 py-12 bg-gray-950 text-white min-h-screen">
+       <title>Student Clubs - MBM University</title>
+      <meta name="description" content="Explore various student clubs at MBM University. Join communities that match your interests, from coding to cultural and technical clubs." />
+      <link rel="icon" href="/favicon.ico" />
       <h1 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
         All Clubs
       </h1>

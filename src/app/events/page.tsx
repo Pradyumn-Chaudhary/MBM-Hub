@@ -7,6 +7,9 @@ export default function EventsPage() {
 
   return (
     <div className="px-6 py-12 bg-gray-950 text-white min-h-screen">
+       <title>Upcoming Events - MBM University</title>
+      <meta name="description" content="Check out upcoming events, workshops, and hackathons happening at MBM University. Don't miss out on exciting opportunities!" />
+      <link rel="icon" href="/events-favicon.ico" />
       <h1 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
         Upcoming Events
       </h1>

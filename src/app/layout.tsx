@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MBM University Clubs",
-  description: "Developed by Pradyumn Chaudhary",
+  title: "MBM University Hub - Explore Clubs & Events",
+  description: "Discover and engage with student clubs, events, and announcements at MBM University. Stay updated on upcoming activities and initiatives.",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({

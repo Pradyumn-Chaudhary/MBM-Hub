@@ -7,6 +7,9 @@ export default function AnnouncementsPage() {
 
   return (
     <div className="px-6 py-12 bg-gray-950 text-white min-h-screen">
+       <title>Latest Announcements - MBM University</title>
+      <meta name="description" content="Stay updated with the latest announcements from student clubs and university departments at MBM University." />
+      <link rel="icon" href="/announcements-favicon.ico" />
       <h1 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
         Latest Announcements
       </h1>

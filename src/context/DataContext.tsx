@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const SHEET_ID = process.env.NEXT_PUBLIC_SHEET_ID;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const CLUBS_RANGE = "Clubs!A2:D";
+const CLUBS_RANGE = "Clubs!A2:C";
 const EVENTS_RANGE = "Events!A2:F";
 const ANNOUNCEMENTS_RANGE = "Announcements!A2:E";
 
@@ -68,11 +68,11 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       }
     }
 
-    fetchData(CLUBS_RANGE, setClubs, ([id, name, description, image]) => ({
+    fetchData(CLUBS_RANGE, setClubs, ([id, name, description]) => ({
       id,
       name,
       description,
-      image,
+      image: `${name}.png`,
     }));
     fetchData(
       EVENTS_RANGE,
