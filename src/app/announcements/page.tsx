@@ -1,5 +1,6 @@
 "use client";
 import { useData } from "@/context/DataContext";
+import Link from "next/link";
 
 export default function AnnouncementsPage() {
   const { announcements } = useData();
@@ -14,19 +15,32 @@ export default function AnnouncementsPage() {
         <p className="text-center text-gray-400">No announcements available.</p>
       ) : (
         <div className="space-y-6 max-w-4xl mx-auto">
-          {announcements.slice().reverse().map((announcement) => (
-            <div
-              key={announcement.id}
-              className="bg-gray-800 p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg"
-            >
+          {announcements
+            .slice()
+            .reverse()
+            .map((announcement) => (
+              <Link
+                key={announcement.id}
+                href={`${announcement.link}`}
+                target="_blank"
+                className="block"
+              >
+                <div className="bg-gray-800 p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
                   <div className="flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-blue-400">{announcement.title}</h3>
-                  <h3 className="text-2xl font-bold text-blue-400">{announcement.club}</h3>
-             </div>
-              <p className="text-gray-400 text-sm mt-1">📅 {announcement.date}</p>
-              <p className="text-gray-300 mt-4">{announcement.message}</p>
-            </div>
-          ))}
+                    <h3 className="text-2xl font-bold text-blue-400">
+                      {announcement.title}
+                    </h3>
+                    <h3 className="text-2xl font-bold text-blue-400">
+                      {announcement.club}
+                    </h3>
+                  </div>
+                  <p className="text-gray-400 text-sm mt-1">
+                    📅 {announcement.date}
+                  </p>
+                  <p className="text-gray-300 mt-4">{announcement.message}</p>
+                </div>
+              </Link>
+            ))}
         </div>
       )}
     </div>
