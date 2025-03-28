@@ -31,7 +31,7 @@ export default function Home() {
                     className="w-full h-60 object-fit rounded-md mb-4"
                   />
                   <h3 className="text-xl font-bold">{club.name}</h3>
-                  <p className="text-gray-400 mt-2">{club.description}</p>
+                  <p className="text-gray-400 mt-2">{club.category}</p>
                 </div>
               </Link>
             ))}

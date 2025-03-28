@@ -10,14 +10,14 @@ import { v4 as uuidv4 } from "uuid";
 
 const SHEET_ID = process.env.NEXT_PUBLIC_SHEET_ID;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const CLUBS_RANGE = "Clubs!A2:C";
+const CLUBS_RANGE = "Clubs!A2:B";
 const EVENTS_RANGE = "Events!A2:F";
 const ANNOUNCEMENTS_RANGE = "Announcements!A2:E";
 
 interface Club {
   id: string;
   name: string;
-  description: string;
+  category: string;
   image: string;
 }
 
@@ -70,10 +70,10 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       }
     }
 
-    fetchData(CLUBS_RANGE, setClubs, ([id, name, description]) => ({
-      id,
+    fetchData(CLUBS_RANGE, setClubs, ([name, category]) => ({
+      id: uuidv4(),
       name,
-      description,
+      category,
       image: `${name}.png`,
     }));
     fetchData(
