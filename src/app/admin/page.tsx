@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { addClub, deleteClub, addAnnouncement, addEvent } from "@/utils/sheets";
 
 const ADMIN_EMAILS = ["anukuntal2345@gmail.com", "admin2@example.com"];
-const EDITOR_EMAILS = ["anukuntal2345@gmail.com", "admin2@example.com"];
+const EDITOR_EMAILS = ["pradyumnchaudhary6@gmail.com", "admin2@example.com"];
 
 export default function AdminPage() {
   const { user, login, logout } = useAuth();
@@ -167,7 +167,9 @@ const AddClubForm = () => {
         type="submit"
         disabled={loading}
         className={`px-4 py-2 rounded ${
-          loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
+          loading
+            ? "bg-gray-500"
+            : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
         } text-white`}
       >
         {loading ? "Processing..." : "Add Club"}
@@ -286,7 +288,9 @@ const AddEventForm = () => {
         type="submit"
         disabled={loading}
         className={`px-4 py-2 rounded ${
-          loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
+          loading
+            ? "bg-gray-500"
+            : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
         } text-white`}
       >
         {loading ? "Processing..." : "Add Event"}
@@ -403,7 +407,9 @@ const AddAnnouncementForm = () => {
         type="submit"
         disabled={loading}
         className={`px-4 py-2 rounded ${
-          loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
+          loading
+            ? "bg-gray-500"
+            : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
         } text-white`}
       >
         {loading ? "Processing..." : "Add Announcement"}
